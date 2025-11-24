@@ -1,6 +1,6 @@
 
 .idea
-
+ForecastApi/src/main/resources/local.settings.json
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar

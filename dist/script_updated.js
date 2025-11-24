@@ -93,10 +93,10 @@ function boot() {
     });
 
     // Button click demo: shows it's reading from selectedPlace
-    // checkBtn.addEventListener("click", () => {
-    //   if (!selectedPlace) return;
-    //   statusEl.textContent = `OK! Using ${selectedPlace.name} (${selectedPlace.lat.toFixed(5)}, ${selectedPlace.lng.toFixed(5)}) on ${dateEl.value}`;
-    // });
+    checkBtn.addEventListener("click", () => {
+      if (!selectedPlace) return;
+      statusEl.textContent = `OK! Using ${selectedPlace.name} (${selectedPlace.lat.toFixed(5)}, ${selectedPlace.lng.toFixed(5)}) on ${dateEl.value}`;
+    });
   })
   .catch(err => {
     console.error("Google Maps loader error:", err);
@@ -113,44 +113,39 @@ let weatherSquare = null;
 
 checkBtn.addEventListener("click", () => {
   // *** BACKEND INTEGRATION POINT ***
-  if (!selectedPlace || !dateEl.value) return;
+  // This is where you should make your call to get weather data
+  // You have access to:
+  // selectedPlace: { name, lat, lng } - the user's selected location
+  // dateEl.value - the selected date from the date picker
 
-  const { lat, lng: lon } = selectedPlace;
-  const date = dateEl.value;
+  if (!selectedPlace || !data.value) return;
+  //showWeatherCard({ temperature: 20, description: "Snow" });
+  const {lat, lng: lon } = selectedPlace;
+  const date = dateEl.value
 
-  statusEl.textContent = 'Fetching forecast...';
+   const apiUrl = `/api/forecast?date=${date}&lat=${lat}&lon=${lon}`
+      fetch(apiUrl)
+      .then(response =>{
 
-  // Construct the relative API URL with query parameters
-  const apiUrl = `https://foolersoftomweatherfunction.azurewebsites.net/api/forecast?date=${date}&lat=${lat}&lon=${lon}`;
+        statusEl.textContent = '';
 
-
-  // Make the GET request
-  fetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      statusEl.textContent = ''; // Clear status
-
-      const weatherData = {
-        temperature: data.temperatureFahrenheit,
-        description: data.rainClassification
-      };
-      showWeatherCard(weatherData);
-    })
-    .catch(error => {
-      console.error("Error fetching forecast:", error);
-      statusEl.textContent = 'Failed to fetch forecast.';
+        const weatherData = {
+          temperature: data.temperatureFahrenheit,
+          description: data.rainClassification
+        };
+        showWeatherCard(weatherData)
+      })
+      .catch(error => {
+        console.error("Error fetching forecast:", error)
+        statusEl.textContent = 'Failed to fetch forecast.';
+      })
     });
-});
+
 
   // Create the weather square when button is clicked
    // Test with "Rain", "Snow", or "Clear"
 
-function showWeatherCard(weatherData) {
+function showWeatherCard(mockData) {
   // *** BACKEND INTEGRATION FUNCTION ***
   // This function displays the weather data in a card format
   // Replace mockData parameter with your actual weather API response
@@ -158,15 +153,14 @@ function showWeatherCard(weatherData) {
   // Weather types: "Rain", "Snow", "Clear"
 
   if (weatherSquare) {
-    weatherSquare.remove()
-    //return;
+    return;
   }
 
-  const w = weatherData; // *** Replace this with your the actual weather response data ***
+  const w = mockData; // *** Replace this with your the actual weather response data ***
   const temp = (w.temperature ?? "—");
   const desc = (w.description ?? "—");
 
-  const niceDate = new Date(dateEl.value + 'T00:00:00').toLocaleDateString(
+  const niceDate = new Date(dateEl.value).toLocaleDateString(
     undefined,
     { year: "numeric", month: "short", day: "numeric" }
   );
@@ -179,14 +173,13 @@ function showWeatherCard(weatherData) {
   console.log('Creating square with selectedPlace:', selectedPlace);
   console.log('Title will be:', title);
 
-
   // Determine weather class based on description
   let weatherClass = 'clear'; // default
-  if (desc.toUpperCase() === "RAINY") {
+  if (desc === "Rain") {
     weatherClass = 'rain';
-  } else if (desc.toUpperCase() === "SNOW") {
+  } else if (desc === "Snow") {
     weatherClass = 'snow';
-  } else if (desc.toUpperCase() === "NOT RAINY") {
+  } else if (desc === "Clear") {
     weatherClass = 'clear';
   }
 
@@ -195,7 +188,7 @@ function showWeatherCard(weatherData) {
   weatherSquare.className = `weather-square ${weatherClass}`;
   weatherSquare.innerHTML = `
     <h3>${title}</h3>
-    <div class="temp">${temp}°F</div>
+    <div class="temp">${temp}°C</div>
     <div class="desc">${desc}</div>
     <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">${niceDate}</div>
   `;

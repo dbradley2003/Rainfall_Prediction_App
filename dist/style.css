@@ -1,0 +1,371 @@
+/* General Reset */
+body {
+  text-align: center; 
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+   /* background: linear-gradient(to right, #35df57, #5231e4); */
+  /* background: #35df57; */
+
+   background: #99c3e4; 
+   position: relative;
+   overflow-x: hidden;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.content-wrapper.has-square {
+  justify-content: center;
+}
+
+/* Animated clouds */
+.clouds {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  opacity: 0.6;
+  animation: float 20s infinite linear;
+}
+
+.cloud:before {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+}
+
+.cloud:after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+}
+
+/* Cloud 1 */
+.cloud:nth-child(1) {
+  width: 80px;
+  height: 30px;
+  top: 20%;
+  animation-delay: 0s;
+  animation-duration: 25s;
+}
+
+.cloud:nth-child(1):before {
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 10px;
+}
+
+.cloud:nth-child(1):after {
+  width: 60px;
+  height: 40px;
+  top: -15px;
+  right: 10px;
+}
+
+/* Cloud 2 */
+.cloud:nth-child(2) {
+  width: 100px;
+  height: 40px;
+  top: 40%;
+  animation-delay: -5s;
+  animation-duration: 30s;
+}
+
+.cloud:nth-child(2):before {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 15px;
+}
+
+.cloud:nth-child(2):after {
+  width: 70px;
+  height: 50px;
+  top: -20px;
+  right: 15px;
+}
+
+/* Cloud 3 */
+.cloud:nth-child(3) {
+  width: 60px;
+  height: 25px;
+  top: 60%;
+  animation-delay: -10s;
+  animation-duration: 35s;
+}
+
+.cloud:nth-child(3):before {
+  width: 40px;
+  height: 40px;
+  top: -20px;
+  left: 10px;
+}
+
+.cloud:nth-child(3):after {
+  width: 50px;
+  height: 35px;
+  top: -15px;
+  right: 10px;
+}
+
+/* Cloud 4 */
+.cloud:nth-child(4) {
+  width: 90px;
+  height: 35px;
+  top: 80%;
+  animation-delay: -15s;
+  animation-duration: 28s;
+}
+
+.cloud:nth-child(4):before {
+  width: 55px;
+  height: 55px;
+  top: -28px;
+  left: 12px;
+}
+
+.cloud:nth-child(4):after {
+  width: 65px;
+  height: 45px;
+  top: -18px;
+  right: 12px;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-100px);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px));
+  }
+}
+
+header {
+  /* background: #5231e4; */
+   background: linear-gradient(90deg, #4a90e2, #2c5aa0);
+  color: #fff;
+  
+  /* color: #d9d9e6; */
+  padding: 20px;
+  text-align: center;
+  border-bottom: #212427;
+  border-bottom-width: 3px;
+  margin-bottom: 60px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+
+     background: linear-gradient(to right, #4a90e2, #2c5aa0);
+
+} 
+
+#place-container {
+  width: 500px;
+  display: block; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+
+#enter-place{
+  font-family: roboto, sans-serif;
+  color:white;
+  font-size: 1.2rem;
+  margin-left: 33px;
+  text-align: left;
+  align-self: flex-start;
+} 
+
+#main-container > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Simple styles for the date input */
+#pick-date {
+
+  display: block;
+  margin-left: auto; 
+  margin-right: auto; 
+  margin-top: 10px; 
+  padding-bottom: 3px; 
+  padding-top: 10px; 
+  padding-left: 5px; 
+
+  width: 500px;           /* tweak as needed */
+  /* padding: .5rem .5rem; */
+  border: 1px solid #212427;
+  border-radius: 3px;
+  font: inherit;
+  line-height: 1.5;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#pick-date:hover {
+  border-color: #8198ad;
+}
+
+#pick-date:focus {
+  outline: none;
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 .2rem rgba(13,110,253,.25); /* soft focus ring */
+}
+
+/* Make the native calendar icon clickable */
+#pick-date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: .25rem;
+}
+
+#check {
+  width: 500px; 
+  line-height: 45px; 
+  margin-top: 10px;
+  font-weight: bold; 
+  border: 1px solid #a3aab0;
+  border-radius:20px;
+  background-color: rgb(243, 249, 250); 
+  font-size: 14px;
+  color:rgb(105, 102, 102); 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+
+}
+
+#map-container {
+  display:block; 
+  margin-left: auto; 
+  margin-right: auto; 
+  height:350px;
+  /* border-radius:12px; */
+  margin-top:10px;
+  border: 1px solid gray;
+  width: 500px; 
+
+}
+
+#enter-place {
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+#map {
+    height: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      /* overflow: hidden;   */
+  }
+
+#check:enabled:hover {
+  background-color:  #4a90e2;
+  color:  white; 
+}
+
+#check:disabled {
+  color: rgb(185, 183, 183); 
+ 
+}
+
+
+
+
+p {
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  color: rgb(164, 162, 162); 
+}
+
+#result {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.weather-square {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-weight: bold;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  position: relative;
+  z-index: 10;
+}
+
+.weather-square:hover {
+  transform: scale(1.05);
+}
+
+.weather-square h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+
+.weather-square .temp {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 10px 0;
+}
+
+.weather-square .desc {
+  font-size: 1rem;
+  opacity: 0.9;
+}

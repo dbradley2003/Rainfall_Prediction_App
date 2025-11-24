@@ -88,9 +88,9 @@
                     <resourceGroup>${functionResourceGroup}</resourceGroup>
                     <region>${functionAppRegion}</region>
                     <appServicePlanName>${functionAppServicePlanName}</appServicePlanName>
-                    <pricingTier>${functionPricingTier}</pricingTier>
 
-                    <hostJson>${project.basedir}/src/main/resources/host.json</hostJson>
+
+                    <hostJson>${project.basedir}/host.json</hostJson>
                     <localSettingsJson>${project.basedir}/src/main/resources/local.settings.json</localSettingsJson>
 
                     <runtime>
